@@ -1,0 +1,60 @@
+name: Feature Request
+description: Propose a new feature or enhancement for the OpenCred API.
+title: "feat: <short description>"
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement!
+        Please provide enough context for maintainers and contributors to evaluate and scope the work.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the current limitation or missing capability.
+      placeholder: "Currently there is no way to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature you would like to see implemented.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Which module is most relevant?
+      options:
+        - auth
+        - users
+        - issuers
+        - credentials
+        - verification
+        - blockchain
+        - ipfs
+        - common
+        - health
+        - "multiple / unsure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any alternative approaches you have thought about.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Contributor checklist
+      options:
+        - label: I have searched existing issues and this is not a duplicate.
+          required: true
+        - label: I am willing to implement this feature myself.

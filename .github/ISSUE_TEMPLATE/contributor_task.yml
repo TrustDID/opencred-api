@@ -1,0 +1,81 @@
+name: Contributor Task
+description: A scoped task for a contributor to implement. Used by maintainers to assign trackable work items.
+title: "task(<module>): <short description>"
+labels: ["help wanted", "good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This template is used by maintainers to create well-scoped contributor tasks.
+        If you are a contributor looking for work, pick up an issue with the
+        `help wanted` or `good first issue` label and comment to claim it.
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      description: Which source module does this task live in?
+      options:
+        - auth
+        - users
+        - issuers
+        - credentials
+        - verification
+        - blockchain
+        - ipfs
+        - common
+        - health
+        - config
+        - "project-wide / infra"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Background & context
+      description: Why this task exists and how it fits the larger picture.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: |
+        A checklist of what "done" looks like for this task.
+        Write each item as a testable statement.
+      placeholder: |
+        - [ ] `CredentialsService.issue()` accepts a valid `IssueCredentialDto`
+        - [ ] The credential JSON is uploaded to IPFS and its CID is persisted
+        - [ ] The issuance is anchored on Soroban and the tx hash is stored
+        - [ ] Unit tests cover the happy path and at least one error path
+    validations:
+      required: true
+
+  - type: textarea
+    id: files
+    attributes:
+      label: Files to edit
+      description: List the source files a contributor should focus on.
+      placeholder: |
+        - `src/credentials/credentials.service.ts`
+        - `src/credentials/dto/issue-credential.dto.ts` (create)
+        - `src/credentials/credentials.service.spec.ts`
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: Helpful resources
+      description: Links to docs, RFCs, or related issues.
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Estimated difficulty
+      options:
+        - "Easy — good first issue"
+        - "Medium — some domain knowledge required"
+        - "Hard — significant design or integration work"
+    validations:
+      required: true
