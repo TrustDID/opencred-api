@@ -33,14 +33,14 @@ export class UsersController {
     return { message: "Not implemented yet. See users contributor issue." };
   }
 
-  /** TODO (contributor): Create a new user account. */
+  /** TODO (contributors): Create a new user account. */
   @Post()
   create(@Body() _body: unknown): { message: string } {
     // TODO: return usersService.create(body);
     return { message: "Not implemented yet. See users contributor issue." };
   }
 
-  /** TODO (contributor): Update a user record. */
+  /** TODO (contributors): Update a user record. */
   @Patch(":id")
   update(
     @Param("id") _id: string,
@@ -50,7 +50,7 @@ export class UsersController {
     return { message: "Not implemented yet. See users contributor issue." };
   }
 
-  /** TODO (contributor): Soft-delete a user. */
+  /** TODO (contributor): Soft-delete a user and . */
   @Delete(":id")
   remove(@Param("id") _id: string): { message: string } {
     // TODO: return usersService.remove(id);
