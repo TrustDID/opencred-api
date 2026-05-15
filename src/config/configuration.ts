@@ -17,19 +17,14 @@ export default () => ({
   port: parseInt(process.env.PORT ?? "3000", 10),
   nodeEnv: process.env.NODE_ENV ?? "development",
 
-  /**
-   * TODO (contributor): Uncomment and wire into TypeOrmModule.forRootAsync()
-   * inside app.module.ts once the PostgreSQL issue is resolved.
-   *
-   * database: {
-   *   host:     process.env.DB_HOST,
-   *   port:     parseInt(process.env.DB_PORT ?? "5432", 10),
-   *   username: process.env.DB_USERNAME,
-   *   password: process.env.DB_PASSWORD,
-   *   name:     process.env.DB_NAME,
-   *   ssl:      process.env.DB_SSL === "true",
-   * },
-   */
+    database: {
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT ?? "5432", 10),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      name: process.env.DB_NAME,
+      ssl: process.env.DB_SSL === "true",
+    },
 
   stellar: {
     network: process.env.STELLAR_NETWORK ?? "testnet",
