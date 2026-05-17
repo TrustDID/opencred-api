@@ -80,7 +80,44 @@ npm run test         # run all unit tests
 npm run test:cov     # with coverage report
 npm run lint         # lint check
 ```
+## PostgreSQL Setup
 
+### Prerequisites
+
+- PostgreSQL installed locally
+- Node.js 20+
+- npm 10+
+
+### Create Database
+
+Run the following command in PostgreSQL:
+
+```sql
+ CREATE DATABASE opencred;
+```
+
+### Configure Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+PORT=3000
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=your_postgres_password
+DB_NAME=opencred
+DB_SSL=false
+```
+
+### Start Development Server
+
+```bash
+npm run start:dev
+```
+
+The application should successfully connect to PostgreSQL during startup.
 ---
 
 ## API surface (current scaffold)

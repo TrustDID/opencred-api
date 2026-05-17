@@ -1,6 +1,10 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
+
 import configuration from "./config/configuration";
+import { databaseConfig } from "./config/database.config";
+
 import { AuthModule } from "./auth/auth.module";
 import { BlockchainModule } from "./blockchain/blockchain.module";
 import { CommonModule } from "./common/common.module";
@@ -13,23 +17,6 @@ import { VerificationModule } from "./verification/verification.module";
 
 /**
  * AppModule is the root module of the OpenCred API.
- *
- * TODO (contributor — PostgreSQL): Add TypeOrmModule.forRootAsync() below
- *   ConfigModule once the database issue is picked up:
- *
- *   TypeOrmModule.forRootAsync({
- *     inject: [ConfigService],
- *     useFactory: (config: ConfigService) => ({
- *       type: 'postgres',
- *       host:     config.get('database.host'),
- *       port:     config.get<number>('database.port'),
- *       username: config.get('database.username'),
- *       password: config.get('database.password'),
- *       database: config.get('database.name'),
- *       autoLoadEntities: true,
- *       synchronize: config.get('nodeEnv') === 'development', // never in prod
- *     }),
- *   }),
  *
  * TODO (contributor): Add ThrottlerModule for rate limiting.
  * TODO (contributor): Add a global HttpExceptionFilter once it is implemented
@@ -44,6 +31,9 @@ import { VerificationModule } from "./verification/verification.module";
       expandVariables: true,
       load: [configuration],
     }),
+
+    // Database configuration
+    TypeOrmModule.forRootAsync(databaseConfig),
 
     // Infrastructure modules — no domain logic, provide shared services.
     CommonModule,
