@@ -140,7 +140,7 @@ All routes are prefixed with `/api`.
 | `PATCH` | `/api/issuers/:id` | issuers | 🚧 Stub |
 | `DELETE` | `/api/issuers/:id` | issuers | 🚧 Stub |
 | `GET` | `/api/credentials` | credentials | 🚧 Stub |
-| `POST` | `/api/credentials` | credentials | 🚧 Stub |
+| `POST` | `/api/credentials` | credentials | ✅ Persists credential metadata |
 | `GET` | `/api/credentials/:id` | credentials | 🚧 Stub |
 | `DELETE` | `/api/credentials/:id/revoke` | credentials | 🚧 Stub |
 | `GET` | `/api/verification/:id` | verification | 🚧 Stub |

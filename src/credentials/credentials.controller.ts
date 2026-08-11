@@ -1,12 +1,8 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Delete,
-  Param,
-  Body,
-} from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+
 import { CredentialsService } from "./credentials.service";
+import { CredentialResponseDto } from "./dto/credential-response.dto";
+import { IssueCredentialDto } from "./dto/issue-credential.dto";
 
 /**
  * CredentialsController exposes endpoints for credential issuance, retrieval,
@@ -18,8 +14,6 @@ import { CredentialsService } from "./credentials.service";
  *   - contribution badges
  *   - skill attestations
  *
- * TODO (contributor): Replace stub responses with proper DTOs
- *   (IssueCredentialDto, CredentialResponseDto) from the dto/ folder.
  * TODO (contributor): Protect mutation routes with JwtAuthGuard + IssuerGuard.
  * TODO (contributor): Add Swagger decorators once Swagger is configured.
  */
@@ -46,16 +40,15 @@ export class CredentialsController {
   }
 
   /**
-   * Issue a new verifiable credential.
-   * TODO (contributor): Validate the request against IssueCredentialDto,
-   *   upload payload to IPFS, anchor on Soroban, persist to DB.
+   * Issue a new verifiable credential. The credential is validated against its
+   * type schema and its metadata is persisted to PostgreSQL.
+   *
+   * TODO (contributor): Upload payload to IPFS and anchor on Soroban once the
+   *   integration layers are implemented.
    */
   @Post()
-  issue(@Body() _body: unknown): { message: string } {
-    // TODO: return credentialsService.issue(body);
-    return {
-      message: "Not implemented yet. See credentials contributor issue.",
-    };
+  issue(@Body() body: IssueCredentialDto): Promise<CredentialResponseDto> {
+    return this.credentialsService.issue(body);
   }
 
   /**

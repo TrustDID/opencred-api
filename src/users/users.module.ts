@@ -1,15 +1,17 @@
 import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+
 import { UsersController } from "./users.controller";
 import { UsersService } from "./users.service";
+import { User } from "./entities/user.entity";
 
 /**
  * UsersModule manages platform user accounts.
  *
- * TODO (contributor): Import TypeOrmModule.forFeature([User]) once the User
- *   entity and PostgreSQL are configured.
- * TODO (contributor): Export UsersService so AuthModule can inject it.
+ * TODO (contributor): Implement full user CRUD in UsersService.
  */
 @Module({
+  imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
   providers: [UsersService],
   exports: [UsersService],

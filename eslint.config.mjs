@@ -25,6 +25,12 @@ export default [
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
+      // Stub handlers intentionally name unused params `_x` until they are
+      // implemented. See auth/, issuers/, users/ controller stubs.
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
     },
   },
   prettier,

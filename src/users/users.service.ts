@@ -1,18 +1,33 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+
+import { User } from "./entities/user.entity";
 
 /**
- * UsersService manages CRUD operations for platform user accounts.
+ * UsersService manages platform user accounts.
  *
- * TODO (contributor): Import Repository<User> from TypeORM once the User entity
- *   exists in entities/.
- * TODO (contributor): Implement findAll(), findOne(), create(), update(), remove().
- * TODO (contributor): Add password hashing with bcrypt in the create() method.
- * TODO (contributor): Add findByEmail() helper used by AuthService during login.
+ * Only the domain helpers required by the credential flow are implemented
+ * today; full user CRUD is tracked in the users contributor issue.
  */
 @Injectable()
 export class UsersService {
-  // TODO: constructor(
-  //   @InjectRepository(User)
-  //   private readonly usersRepository: Repository<User>,
-  // ) {}
+  constructor(
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>,
+  ) {}
+
+  /**
+   * Resolve a user by id. Throws NotFoundException when the user does not
+   * exist — used by CredentialsService to resolve the subject of a credential.
+   */
+  async findOne(id: string): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException(`User with id "${id}" not found`);
+    }
+
+    return user;
+  }
 }
